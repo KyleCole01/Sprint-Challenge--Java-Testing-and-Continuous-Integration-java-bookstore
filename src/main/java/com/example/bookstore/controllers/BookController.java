@@ -48,9 +48,9 @@ public class BookController {
             @ApiResponse(code = 201, message = "Successfully matched book with author", response = void.class),
             @ApiResponse(code = 500, message = "Failed to match book with author", response = ErrorDetail.class)
     })
-    @PostMapping(value = "/data/books/{id}")
-    public ResponseEntity<?> matchBookWithAuthor(@PathVariable long id, @RequestBody Author author){
-        bookService.assignAuthor(id, author.getAuthorid());
+    @PostMapping(value = "/data/books/{bookid}/authors/{authorid}")
+    public ResponseEntity<?> matchBookWithAuthor(@PathVariable long bookid, @PathVariable long authorid, @RequestBody Author author){
+        bookService.assignAuthor(bookid, authorid);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
